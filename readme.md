@@ -4,23 +4,23 @@ Web scraping maxforlive.com for data analytics and programmatically downloading 
 
 # Motivation
 
-There are thousands of M4L audio effect, midi effect, and instrument devices on maxforlive.com, most of which are free to downlaod.
+**There are thousands of M4L audio effect, midi effect, and instrument devices on maxforlive.com, most of which are free to download**.
 
-This project was designed to *programmatically query all M4L devices on the official website*, and *apply filters* to, for example, select free devices that have been tested on your specific version of `Ableton Live`.  You may also filter by device category or date added.  
+This project was designed to **programmatically query all M4L devices on the official website**, and **apply filters** to, for example, select free devices that have been tested on your specific version of `Ableton Live`.  You may also filter by device category or date added.  
 
-Once devices have been selected, a simple python function will *open all URLs into web browser tabs*, so you just need to click the 'Download Device' button.  
+Once devices have been selected, a simple python function will **open all URLs into web browser tabs**, so you just need to click the 'Download Device' button to download.  
 
-For users who wish to download thousands of devices in a *fully* automated way (i.e., without clicking a mouse), this last mouse-click step can be automated with Selenium.  I may upload code to do this at a later date.
+For users who wish to download thousands of devices in a **fully** automated way (i.e., without clicking a mouse), this last mouse-click step can be automated with Selenium.  I may upload code to do this at a later date.
 
 This repo may also be used to analyze trends in elecronic music production and see which device types or tags are growing in popularity over time.  Such analytics are limited of course to the development of M4L devices, but nonetheless this offers a glimpse into the "evolution" of what I consider an exciting driving force behind sonic innovation.
 
 # Results
 
-My repository contains `Python` tools for web scraping maxforlive.com and also *includes my full results from scraping* in `all_devices.csv`. 
+My repository contains `Python` tools for web scraping maxforlive.com and also **includes my full results from scraping** in `all_devices.csv`. 
 
-As of June 4th, 2021, I found 7368 device URLs, including for *5182 tested devices, out of which 3382 are free*.  The full dataset is in `all_devices.csv`. It contains the version of `Ableton Live` tested, number of downloads, device tags, device types, date added, URLs, and whether it is a free device. While I compiled data for all devices, I did not comprehensively scrape all data fields, so more info may be added later.
+As of June 4th, 2021, I found 7368 device URLs, including for **5182 tested devices, out of which 3382 are free**.  The full dataset is in `all_devices.csv`. It contains the version of `Ableton Live` tested, number of downloads, device tags, device types, date added, URLs, and whether it is a free device. While I compiled data for all devices, I did not comprehensively scrape all data fields, so more info may be added later.
 
-## Free M4L devices uploads are not accelerating, but 2020 and 2021 have slightly more uploads than previous years. 
+## Free M4L device uploads are not accelerating, but 2020 and 2021 have slightly more uploads than previous years. 
 
 I was expecting to see steady growth, and perhaps acccelerating or even exponential growth in free M4L device uploads.
 That does not seem like it is the case.
@@ -32,14 +32,14 @@ The lack of steady growth in free M4L device development is surprising.  Perhaps
 
 
 I was also curious if the coronavirus pandemic lead to the development of free M4L devices while people had more time at home.
-It looks like more free devices were uploaded in 2020 and 2021 than in previous years. 
+It looks like **more free devices were uploaded in 2020 and 2021 than in previous years**, with 380 in 2020 and 201 devices created in just the first 5 months of 2021. 
 
 ## 88% of the most downloaded M4L devices were created before 2015.
 
 ![Downloads vs Upload date](figures/downloads_vs_uploads.png)
 
 
-As the following analysis shows,  only *12 of the top 100 most-downloaded free M4L devices were created in the last 7 years*.
+As the following analysis shows,  only **12 of the top 100 most-downloaded free M4L devices were created in the last 7 years**.
 
 ```python
 import pandas as pd
@@ -75,18 +75,17 @@ However I was not expecting this effect to be so dramatic.
 
 ## Newly made devices have fewer downloads
 
-By taking the logarithm of the number of downloads per device, a downward trend in time emerges. It is clear that free devices have not been downloaded more, despite there being slightly more development in the last year.  However, it is important to keep in mind users have had less time to download these new plug-ins.
+By taking the logarithm of the number of downloads per device, a downward trend in time emerges. It is clear that free devices have not been downloaded more, despite there being slightly more development in the last year.  However, it is important to keep in mind:  users have had less time to download these new plug-ins.  The median number of downloads for free devices made between 2012 and 2020 is 621, whereas the median number of downloads for a plug-in made in 2021 is 192.
 
-![log10downloads vs Upload date](log10downloads_vs_uploads.png)
+![log10downloads vs Upload date](figures/log10downloads_vs_uploads.png)
 
-Downloads for free devices made between 2012 and 2020 tend to be in the thousands, whereas free devices made in 2021 tend to be in the hundreds.
 
 
 # Repository requirements
 
-* Python 3 (required)
-* Pandas (recommended)
-* matplotlib (optional, used only for plotting)
+* `Python 3` (required)
+* `Pandas` (recommended)
+* `matplotlib` (optional, used only for plotting)
 
 # Filtering devices and automatically opening URLs in your web browser
 
@@ -124,7 +123,7 @@ open_urls(live_10_midi)
 
 ## Using `pickle`
 
-This is the way to go if you for whatever reason can't or don't want to use Pandas.
+This is the way to go if you for whatever reason can't or don't want to use `pandas`.
 
 Pickled objects (python objects that have been saved using the `pickle` module. ) are convenient for loading results.  But they have been shown to be unsafe as they can hide malicious software programs.  Only use pickled objects if you trust the person who is sharing them.
 
@@ -150,4 +149,4 @@ open_urls(f, mode = 'pickle')
 
 Users may wish to do the web scraping themselves.  A reason for wanting to do this would be getting the absolute most up-to-date data, (that is, more up-to-date than what is contained in `all_devices.csv`)
 
-Code is located in the file `get_all_m4l.py`.  Reconfigure the `N_DEVICES` value to the most recently uploaded device on maxforlive.com, save it, and run `python get_all_m4l.py` 
+Scraping code is located in the file `get_all_m4l.py`.  Reconfigure the `N_DEVICES` value to the most recently uploaded device on maxforlive.com, save it, and run `python get_all_m4l.py` 
